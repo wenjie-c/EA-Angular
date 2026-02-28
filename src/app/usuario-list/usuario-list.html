@@ -1,0 +1,23 @@
+<h2>Usuarios</h2>
+
+<p *ngIf="loading">Cargando...</p>
+<p *ngIf="!loading && errorMsg">{{ errorMsg }}</p>
+
+<ul class="list" *ngIf="!loading && !errorMsg && usuarios.length > 0">
+  <li class="card" *ngFor="let u of usuarios; trackBy: trackById">
+    <div>
+      <div class="name">{{ u.name }}</div>
+      <div class="muted">ID: {{ u._id }}</div>
+    </div>
+
+    <div class="muted">
+      Organización: {{ organizacionLabel(u) }}
+    </div>
+  </li>
+</ul>
+
+<p *ngIf="!loading && !errorMsg && usuarios.length === 0">
+  No hay usuarios.
+</p>
+
+<button type="button" class="btn" (click)="load()">Recargar</button>

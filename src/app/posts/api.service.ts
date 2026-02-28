@@ -45,12 +45,9 @@ export class ApiService {
   // USUARIOS
   // =========================
 
-  // OJO: en tu backend está definido como router.get('/get/', ...)
-  getUsuarios(): Observable<{ usuario: Usuario[] }> {
-    return this.http.get<{ usuario: Usuario[] }>(
-      `${this.baseUrl}/usuarios/get/`
-    );
-  }
+  getUsuarios(): Observable<{ usuarios: Usuario[] }> {
+  return this.http.get<{ usuarios: Usuario[] }>(`${this.baseUrl}/usuarios/get/`);
+}
 
   getUsuarioById(usuarioId: string): Observable<{ usuario: Usuario }> {
     return this.http.get<{ usuario: Usuario }>(
