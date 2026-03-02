@@ -18,33 +18,33 @@ export class ApiService {
 
   getOrganizaciones(): Observable<any> {
     return this.http.get(
-      `${this.baseUrl}/organizaciones/get`
+      `${this.baseUrl}/organizaciones`
     );
   }
 
   getOrganizacionById(id: string): Observable<any> {
     return this.http.get(
-      `${this.baseUrl}/organizaciones/get/${id}`
+      `${this.baseUrl}/organizaciones/${id}`
     );
   }
 
   createOrganizacion(name: string): Observable<any> {
     return this.http.post(
-      `${this.baseUrl}/organizaciones/create`,
+      `${this.baseUrl}/organizaciones`,
       { name }
     );
   }
 
   updateOrganizacion(id: string, name: string): Observable<any> {
     return this.http.patch(
-      `${this.baseUrl}/organizaciones/update/${id}`,
+      `${this.baseUrl}/organizaciones/${id}`,
       { name }
     );
   }
 
   deleteOrganizacion(id: string): Observable<any> {
     return this.http.delete(
-      `${this.baseUrl}/organizaciones/delete/${id}`
+      `${this.baseUrl}/organizaciones/${id}`
     );
   }
 
@@ -54,33 +54,33 @@ export class ApiService {
 
   getUsuarios(): Observable<any> {
     return this.http.get(
-      `${this.baseUrl}/usuarios/get`
+      `${this.baseUrl}/usuarios`
     );
   }
 
   getUsuarioById(id: string): Observable<any> {
     return this.http.get(
-      `${this.baseUrl}/usuarios/get/${id}`
+      `${this.baseUrl}/usuarios/${id}`
     );
   }
 
   createUsuario(name: string, organizacion: string): Observable<any> {
     return this.http.post(
-      `${this.baseUrl}/usuarios/create`,
+      `${this.baseUrl}/usuarios`,
       { name, organizacion }
     );
   }
 
   updateUsuario(id: string, name: string, organizacion: string): Observable<any> {
     return this.http.patch(
-      `${this.baseUrl}/usuarios/update/${id}`,
+      `${this.baseUrl}/usuarios/${id}`,
       { name, organizacion }
     );
   }
 
   deleteUsuario(id: string): Observable<any> {
     return this.http.delete(
-      `${this.baseUrl}/usuarios/delete/${id}`
+      `${this.baseUrl}/usuarios/${id}`
     );
   }
 }

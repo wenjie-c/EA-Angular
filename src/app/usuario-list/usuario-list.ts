@@ -25,6 +25,8 @@ export class UsuarioList implements OnInit {
   usuarioForm!: FormGroup;
   editando = false;
   usuarioEditId: string | null = null;
+  expanded: { [key: string]: boolean } = {};
+
 
   constructor(private api: ApiService, private fb: FormBuilder, private cdr: ChangeDetectorRef, private dialog: MatDialog) {
     this.usuarioForm = this.fb.group({
@@ -129,6 +131,10 @@ guardar(): void {
       });
   }
 }
+toggleExpand(id: string): void {
+  this.expanded[id] = !this.expanded[id];
+}
+
   confirmDelete(id: string, name: string) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: name

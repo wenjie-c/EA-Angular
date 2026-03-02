@@ -12,7 +12,18 @@
 <ul class="list" *ngIf="!loading && !errorMsg && usuarios.length > 0">
   <li class="card" *ngFor="let u of usuariosFiltrados; trackBy: trackById">
     <div>
-      <div class="name">{{ u.name }}</div>
+      <span class="name">
+        {{
+          expanded[u._id] || u.name.length <= 15
+            ? u.name
+            : (u.name | slice:0:15) + '...'
+        }}
+      </span>
+      <button *ngIf="u.name.length > 15"
+              class="btn"
+              (click)="toggleExpand(u._id)">
+        {{ expanded[u._id] ? 'Mostrar menos' : 'Mostrar más' }}
+      </button>
       <div class="muted">ID: {{ u._id }}</div>
 
         <div>

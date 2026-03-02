@@ -13,7 +13,19 @@
   <li class="card" *ngFor="let org of organizacionesFiltradas; trackBy: trackById">
 
     <div>
-      <span class="name">{{ org.name }}</span>
+      <span class="name">
+      {{
+        expanded[org._id] || org.name.length <= 15
+          ? org.name
+          : (org.name | slice:0:15) + '...'
+      }}
+      </span>
+
+      <button *ngIf="org.name.length > 15"
+              class="btn"
+              (click)="toggleExpand(org._id)">
+        {{ expanded[org._id] ? 'Mostrar menos' : 'Mostrar más' }}
+      </button>
     </div>
 
     <div>

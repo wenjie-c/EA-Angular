@@ -20,11 +20,11 @@ export class OrganizacionList implements OnInit {
   searchControl = new FormControl('');
   loading = true;
   errorMsg = '';
-  // Variable para controlar la visibilidad del formulario
   mostrarForm = false;
   organizacionForm!: FormGroup;
   editando = false;
-organizacionEditId: string | null = null;
+  organizacionEditId: string | null = null;
+  expanded: { [key: string]: boolean } = {};
 
   constructor(private api: ApiService, private fb: FormBuilder, private cdr: ChangeDetectorRef, private dialog: MatDialog) {
     this.organizacionForm = this.fb.group({
@@ -45,6 +45,7 @@ organizacionEditId: string | null = null;
         org.name.toLowerCase().includes(term)
       );
     });
+    
   }
 
   load(): void {
@@ -120,6 +121,9 @@ guardar(): void {
         }
       });
   }
+}
+toggleExpand(id: string): void {
+  this.expanded[id] = !this.expanded[id];
 }
 resetForm(): void {
   this.mostrarForm = false;
