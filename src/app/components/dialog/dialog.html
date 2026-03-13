@@ -1,0 +1,28 @@
+<dialog #dialog class="bubble" title="Add User">
+  <div id="content">
+    <div id="title">
+      <p>
+        Add User
+      </p>
+    </div>
+
+    <div class="tabla">
+        <div class="row">
+            <div class="cell">Name</div>
+            <div class="cell">Email</div>
+            <div class="cell">Password</div>
+        </div>
+        <div class="row">
+            <div class="cell"><input type="text" [(ngModel)]="name"></div>
+            <div class="cell"><input type="text" [(ngModel)]="email"></div>
+            <div class="cell"><input type="text" [(ngModel)]="password"></div>
+        </div>
+    </div>
+
+    <div id="bottom">
+      <button (click)="onSaveBtnClick()">Save</button>
+    </div>
+  </div>
+</dialog>
+
+<button (click)="OpenDialog()">Add User</button>

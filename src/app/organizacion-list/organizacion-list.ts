@@ -1,16 +1,17 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OrganizacionService } from '../services/organizacion.service';
 import { Organizacion } from '../models/organizacion.model';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog';
+import { Detail } from '../components/detail/detail';
 
 
 @Component({
   selector: 'app-organizacion-list',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MatDialogModule],
+  imports: [CommonModule, ReactiveFormsModule, MatDialogModule, Detail],
   templateUrl: './organizacion-list.html',
   styleUrls: ['./organizacion-list.css'],
 })
@@ -36,6 +37,7 @@ export class OrganizacionList implements OnInit {
     this.searchControl = new FormControl('');
   }
 
+  
   //Función: leer
   ngOnInit(): void {
     this.load();
@@ -197,5 +199,13 @@ export class OrganizacionList implements OnInit {
         this.loading = false;
       }
     });
+  }
+
+  @ViewChild(Detail, {static: false})  detailItem!: Detail;
+  onItemClick(idOrganizacion: string){
+    //alert(idOrganizacion);
+    console.log(`Calling to object type ${typeof this.detailItem}`);
+    this.detailItem?.doApiCall(idOrganizacion);
+
   }
 }

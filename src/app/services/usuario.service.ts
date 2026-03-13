@@ -51,8 +51,8 @@ export class UsuarioService {
   }
 
   //Función: eliminar usuario
-  deleteUsuario(id: string): Observable<void> {
-    return this.http.delete<void>(
+  deleteUsuario(id: string): Observable<Usuario> {
+    return this.http.delete<Usuario>(
       `${this.baseUrl}/usuarios/${id}`
     );
   }

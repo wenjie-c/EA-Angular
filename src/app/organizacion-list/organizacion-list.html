@@ -11,13 +11,15 @@
 <p *ngIf="loading">Cargando...</p>
 <p *ngIf="!loading && errorMsg">{{ errorMsg }}</p>
 
+<app-detail #itemDetail />
+
 <!-- Mensaje si no hay organizaciones -->
 <ul class="list" *ngIf="!loading && !errorMsg && organizaciones.length > 0">
   <!-- Lista de organizaciones -->
   <li class="card" *ngFor="let org of organizacionesVisibles; trackBy: trackById"> 
     
     <!-- Nombre con truncado si supera de 15 caracteres y botón para expandir -->
-    <div>
+    <div (click)="onItemClick(org._id)">
       <span class="name">
       {{
         expanded[org._id] || org.name.length <= 15

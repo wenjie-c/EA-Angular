@@ -1,0 +1,23 @@
+@if (!hidden()) {
+  <div class="detail">
+    <p>detail works!</p>
+    @if (!isLoaded()) {
+      <p>Searching for organizacion {{ data._id }}</p>
+    } @else {
+      <h1>Organizacion: {{ data.name }}</h1>
+      <h2>Usuarios:</h2>
+      <!--table style="display: flex;flex-direction: column;"-->
+      <div class="tabla">
+        <div class="row" style="font-weight: bold;">
+          <div class="cell">Name</div>
+          <div class="cell">Email</div>
+          <div class="cell">Password</div>
+        </div>
+        @for (item of data.myUsers; track $index) {
+          <app-user-item [data]="item" />
+        }
+      </div>
+      <app-dialog [idOrganizacion]="data._id"/>
+    }
+  </div>
+}

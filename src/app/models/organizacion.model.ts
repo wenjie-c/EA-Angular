@@ -1,4 +1,6 @@
+import { Usuario } from "./usuario.model";
 export interface Organizacion {
   _id: string;
   name: string;
+  myUsers?: Usuario[];
 }
